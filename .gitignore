@@ -1,0 +1,9 @@
+/venv
+
+# Logs
+**/*.log
+**/logs
+
+# Django
+**/media/
+**/staticfiles/

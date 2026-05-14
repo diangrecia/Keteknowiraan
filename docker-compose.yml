@@ -1,0 +1,49 @@
+services:
+  mysql-db:
+    image: mysql:8  # Menggunakan image MySQL versi 8
+    container_name: ditenun_mysql  # Nama container untuk MySQL
+    restart: unless-stopped  # Restart container kecuali dihentikan secara manual
+    volumes:
+      - ditenun-mysql-data:/var/lib/mysql  # Volume untuk menyimpan data MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'  # Password root untuk MySQL
+      MYSQL_DATABASE: 'GenerateMotif'  # Nama database yang akan dibuat
+      MYSQL_TCP_PORT: '3306'  # Port TCP MySQL yang digunakan
+    expose:
+      - "3306"
+  
+  django-app:
+    build: 
+      context: .  # Menggunakan konteks dari direktori saat ini
+      dockerfile: app/Dockerfile  # Menggunakan Dockerfile untuk membangun image
+    container_name: ditenun_app  # Nama container untuk Django
+    command: sh -c "sleep 10 && python manage.py makemigrations Website && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py seed_accounts && python manage.py seed_characteristics && python manage.py seed_colors && python manage.py runserver 0.0.0.0:8000 --noreload"  # Perintah untuk menjalankan Django
+    restart: unless-stopped  # Restart container kecuali dihentikan secara manual
+    volumes:
+      - ./app:/app  # Mount direktori saat ini ke dalam container di /app
+    ports:
+      - "8001:8000"  # Memetakan port 8008 dari host ke port 8000 dalam container
+    env_file:
+      - ./app/.env  # Menggunakan file lingkungan .env untuk variabel lingkungan
+    depends_on:
+      - mysql-db  # Layanan ini bergantung pada mysql-db
+
+  django-app-optimization:
+    build: 
+      context: .  # Menggunakan konteks dari direktori saat ini
+      dockerfile: app_optimization/Dockerfile  # Menggunakan Dockerfile untuk membangun image
+    container_name: ditenun_app_optimization  # Nama container untuk Django
+    command: sh -c "sleep 10 && python manage.py makemigrations Website && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py seed_accounts && python manage.py seed_characteristics && python manage.py seed_colors && python manage.py runserver 0.0.0.0:8000 --noreload"  # Perintah untuk menjalankan Django
+    restart: unless-stopped  # Restart container kecuali dihentikan secara manual
+    volumes:
+      - ./app_optimization:/app  # Mount direktori saat ini ke dalam container di /app
+    ports:
+      - "8002:8000"  # Memetakan port 8008 dari host ke port 8000 dalam container
+    env_file:
+      - ./app_optimization/.env  # Menggunakan file lingkungan .env untuk variabel lingkungan
+    depends_on:
+      - mysql-db  # Layanan ini bergantung pada mysql-db
+
+volumes:
+  ditenun-mysql-data:
+    driver: local  # Menetapkan driver volume sebagai lokal

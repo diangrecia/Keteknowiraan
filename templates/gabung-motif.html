@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="{% static 'templatemo-style.css' %}" />
+    <title>Modul Lidi</title>
+    <link
+      rel="icon"
+      href="{% static 'img/icon/NewTitle.ico' %}"
+      type="image/x-icon"
+    />
+    <link
+      rel="icon"
+      href="{% static 'img/icon/NewTitle.png' %}"
+      type="image/x-icon"
+    />
+    <style>
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0;
+        padding: 0;
+      }
+      .main-title {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      h1 {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      h2 {
+        font-size: 30px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      h3 {
+        font-size: 24px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      .container {
+        max-width: 75%;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 31px;
+      }
+      .form-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: -83px;
+        margin-bottom: 30px;
+      }
+      .form-container div {
+        flex: 1;
+      }
+      .form-container h5.combined-title {
+        font-size: 10px;
+        color: #000000;
+        text-align: center;
+      }
+      .form-container p {
+        font-size: 15px;
+        color: rgb(122, 121, 121);
+        text-align: center;
+      }
+      .motif-container {
+        margin-top: 0;
+        border: 3px solid #000000;
+        border-radius: 10px;
+        padding: 15px;
+        background-color: #f5f5f5;
+        height: 1250px;
+      }
+      .motif-container h5 {
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+        margin-top: 0;
+      }
+      .new-combined-motif-container {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: white;
+        border: 1px solid #ddd;
+        align-items: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-items: center;
+        height: auto;
+        width: 100%;
+        overflow-y: auto;
+      }
+      .motif-size {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin-bottom: 10px;
+        position: relative;
+      }
+      img[data-jenis="asal"] {
+        filter: contrast(1.5);
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        image-rendering: pixelated;
+        will-change: filter;
+      }
+      img:not([data-jenis="asal"]) {
+        filter: none;
+      }
+      .motif-number {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: blue;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 0px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .new-combined-motif-container div {
+        position: relative;
+        width: 100%;
+      }
+      .motif-card {
+        margin-bottom: 10px;
+        border: 2px solid #000000;
+        border-radius: 0px;
+        padding: 10px;
+        background-color: #f9f9f9;
+      }
+      .btn-container {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .motif-item {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        cursor: pointer;
+        align-items: center;
+      }
+      .inner-card > .row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .inner-card > .row > .col-md-6 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .card-1 {
+        padding: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .motif-pair-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        margin-bottom: 60px;
+      }
+      .motif-pair {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .motif-pair img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border: 1px solid #ddd;
+        display: block;
+        margin: 0 auto;
+      }
+      .equal-height-row {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+      }
+      .equal-height-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .select-wrapper {
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+      }
+      .select-wrapper select {
+        appearance: none;
+        padding-right: 20px;
+        font-size: 14px;
+        color: #000000;
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+      }
+      .select-wrapper::after {
+        content: "▼";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 15px;
+        color: #000000;
+      }
+      .size-info {
+        font-size: 14px;
+        color: rgb(122, 121, 121);
+        text
+
+-align: center;
+        margin-top: 10px;
+        display: none;
+      }
+      .puca-row {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .puca-motif-pair {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+      }
+      .puca-motif-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .puca-motif {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+      .new-combined-motif-container.puca {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        height: auto;
+        overflow-y: auto;
+        padding: 15px;
+        margin: 0;
+      }
+      .puca-motif-wrapper[data-position="middle"] {
+        border: 2px dashed #002ba3;
+        background-color: #e6f0ff;
+        padding: 5px;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+      .puca-motif-wrapper[data-position="middle"] img {
+        border: 1px solid #002ba3;
+      }
+      .sadum-row {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .sadum-motif-pair {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+      }
+      .sadum-motif-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .sadum-motif {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+      .new-combined-motif-container.sadum {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        height: auto;
+        overflow-y: auto;
+        padding: 15px;
+        margin: 0;
+      }
+      #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #f5f5f5;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #002ba3;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .loader-section {
+        position: fixed;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        background: #f5f5f5;
+        z-index: 1000;
+        transform: translateX(0);
+        transition: all 0.7s;
+      }
+      .loader-section.section-left {
+        left: 0;
+      }
+      .loader-section.section-right {
+        right: 0;
+      }
+      .loaded #loader-wrapper .loader-section.section-left {
+        transform: translateX(-100%);
+      }
+      .loaded #loader-wrapper .loader-section.section-right {
+        transform: translateX(100%);
+      }
+      .loaded #loader-wrapper {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 0.7s, opacity 0.7s;
+      }
+      .middle-motif-placeholder {
+        width: 150px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+        border: 2px dashed #999;
+        color: #666;
+        font-weight: bold;
+        font-size: 12px;
+        margin: 0 auto;
+      }
+      .selecting-middle .puca-motif-wrapper:not([data-position="middle"]) {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .selecting-middle .puca-motif-wrapper[data-position="middle"] {
+        border: 2px solid red;
+        animation: pulse 1s infinite;
+      }
+      @keyframes pulse {
+        0% { border-color: red; }
+        50% { border-color: #002ba3; }
+        100% { border-color: red; }
+      }
+      .aturan-kain {
+        font-size: 14px;
+        color: rgb(122, 121, 121);
+        text-align: center;
+        margin-top: 10px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    {% include "header.html" %}
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+    </div>
+    <div class="container card-0 justify-content-center">
+      <div class="card-body px-sm-4 px-0">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-10">
+            <h3 class="main-title">Modul Lidi</h3>
+            <p class="text-center text-white">
+              Modul Lidi membantu penenun menghasilkan berbagai motif hanya
+              dengan menggunakan sedikit Lidi. Motif yang dihasilkan telah
+              teruji mampu menciptakan hingga ratusan motif dengan 8 jenis Lidi.
+              Motif ini dapat diterapkan secara pasti pada kain tenun ulos.
+            </p>
+          </div>
+        </div>
+        <div class="row justify-content-center round">
+          <div class="col-lg-10 col-md-12">
+            <div class="card shadow-lg card-1">
+              <div class="card-body inner-card">
+                <div class="row equal-height-row">
+                  <div class="form-container">
+                    <div>
+                      <h3>Jenis Kain</h3>
+                      <p>Klik untuk memilih</p>
+                      <div class="select-wrapper">
+                        <select name="jenis_kain" id="jenis_kain">
+                          <option value="sadum">Sadum</option>
+                          <option value="puca">Puca</option>
+                        </select>
+                      </div>
+                      <p id="aturan-sadum" class="aturan-kain">
+                        Sadum: Motif simetris dengan warna kontras, membentuk pola seragam di seluruh kain.
+                      </p>
+                      <p id="aturan-puca" class="aturan-kain">
+                        Puca: Motif bebas dengan warna cerah, satu motif utama di tengah, cerminan di kiri dan kanan.
+                      </p>
+                    </div>
+                    <div>
+                      <h3>Jenis Produk</h3>
+                      <p>Klik untuk memilih</p>
+                      <div class="select-wrapper">
+                        <select name="jenis_produk" id="jenis_produk">
+                          <option value="sarung">Sarung</option>
+                          <option value="selendang">Selendang</option>
+                        </select>
+                      </div>
+                      <p id="size-info-sarung" class="size-info">
+                        Ukuran Sarung: Panjang 200 -210 cm, lebar 95 - 97 cm
+                      </p>
+                      <p id="size-info-selendang" class="size-info">
+                        Ukuran Selendang: Panjang 190 - 200 cm, Lebar 60 - 70 cm
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 equal-height-col">
+                    <h5 class="motif-title text-center">Motif</h5>
+                    <p class="explanation-text text-center">
+                      Silakan pilih motif yang Anda inginkan. Anda bisa memilih
+                      lebih dari satu motif untuk digabungkan.
+                    </p>
+                    <div class="motif-container">
+                      <br />
+                      <h5 class="text-center">Motif Asal</h5>
+                      <p class="text-center">Urutan Asal: {{ urutanasal }}</p>
+                      <div class="card motif-card">
+                        <img
+                          src="{{ raw_url }}"
+                          class="card-img-top motif-size"
+                          alt="Motif Asal"
+                          loading="lazy"
+                          data-jenis="asal"
+                          data-urutanasal="{{ urutanasal }}"
+                          data-mirror="true"
+                          onclick="selectMotif(this)"
+                        />
+                      </div>
+                      <h5 class="text-center">Hasil Motif 1</h5>
+                      <div class="card motif-card">
+                        <img
+                          src="{{ edit_url }}"
+                          class="card-img-top motif-size"
+                          alt="Hasil Motif 1"
+                          loading="lazy"
+                          data-urutanasal="{{ urutan }}"
+                          data-mirror="true"
+                          onclick="selectMotif(this)"
+                        />
+                      </div>
+                      <h5 class="text-center">Hasil Motif 2</h5>
+                      <div class="card motif-card">
+                        <img
+                          src="{{ edit_url2 }}"
+                          class="card-img-top motif-size"
+                          alt="Hasil Motif 2"
+                          loading="lazy"
+                          data-urutanasal="{{ urutan1 }}"
+                          data-mirror="true"
+                          onclick="selectMotif(this)"
+                        />
+                      </div>
+                      <h5 class="text-center">Hasil Motif 3</h5>
+                      <div class="card motif-card">
+                        <img
+                          src="{{ edit_url3 }}"
+                          class="card-img-top motif-size"
+                          alt="Hasil Motif 3"
+                          loading="lazy"
+                          data-urutanasal="{{ urutan2 }}"
+                          data-mirror="true"
+                          onclick="selectMotif(this)"
+                        />
+                      </div>
+                      <h5 class="text-center">Hasil Motif 4</h5>
+                      <div class="card motif-card">
+                        <img
+                          src="{{ edit_url4 }}"
+                          class="card-img-top motif-size"
+                          alt="Hasil Motif 4"
+                          loading="lazy"
+                          data-urutanasal="{{ urutan3 }}"
+                          data-mirror="true"
+                          onclick="selectMotif(this)"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 equal-height-col">
+                    <h5 class="combined-title text-center">
+                      Penggabungan Motif
+                    </h5>
+                    <p class="explanation-text text-center">
+                      Untuk menghapus motif yang sudah dipilih, silakan pilih
+                      motif yang ingin dihapus.
+                    </p>
+                    <div class="motif-container">
+                      <div
+                        id="newCombinedMotifContainer"
+                        class="new-combined-motif-container"
+                      >
+                        <p class="text-muted">Belum ada motif yang dipilih.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="btn-container row mt-4 text-center">
+                  <div class="col-md-12">
+                    <button
+                      class="btn"
+                      onclick="saveMotif()"
+                      style="
+                        background-color: #002ba3;
+                        border: 2px solid #002ba3;
+                        border-radius: 0px;
+                        padding: 12px 30px 14px;
+                        font-size: 1rem;
+                        color: #ffffff;
+                        display: inline-block;
+                        width: 320px;
+                      "
+                    >
+                      Simpan Motif
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="modal fade"
+                  id="successModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="border: none">
+                      <div
+                        class="modal-header d-flex justify-content-center flex-column align-items-center"
+                        style="
+                          border-bottom: none;
+                          position: relative;
+                          padding: 0;
+                        "
+                      >
+                        <img
+                          src="{% static 'img/icon/checkmark.png' %}"
+                          alt="Success"
+                          style="width: 140px; margin-bottom: 0"
+                        />
+                        <div
+                          class="modal-body text-center"
+                          style="border-bottom: none; padding: 0; margin-top: 0"
+                        >
+                          Motif Berhasil Dibuat
+                        </div>
+                      </div>
+                      <div
+                        class="modal-footer d-flex justify-content-center"
+                        style="border-top: none; padding-top: 1"
+                      >
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          onclick="redirectToList()"
+                        >
+                          Lihat Motif
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="modal fade"
+                  id="errorModal"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content" style="border: none">
+                      <div
+                        class="modal-header d-flex justify-content-center flex-column align-items-center"
+                        style="
+                          border-bottom: none;
+                          position: relative;
+                          padding: 0;
+                        "
+                      >
+                        <div
+                          class="modal-body text-center"
+                          style="border-bottom: none; padding: 0; margin-top: 0"
+                        >
+                          <div style="font-size: 64px; color: red">❌</div>
+                          <span id="errorModalMessage"
+                            >Pilih motif terlebih dahulu!</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="modal-footer d-flex justify-content-center"
+                        style="border-top: none"
+                      >
+                        <button
+                          type="button"
+                          data-bs-dismiss="modal"
+                          class="btn"
+                          style="
+                            background-color: #002ba3;
+                            border: 2px solid #002ba3;
+                            border-radius: 0px;
+                            padding: 12px 30px 14px;
+                            font-size: 1rem;
+                            color: #ffffff;
+                            display: inline-block;
+                            width: 320px;
+                          "
+                        >
+                          OK
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="btn-container row mt-4 text-center">
+                  <div class="col-md-12">
+                    <a
+                      href="{% url 'generator' %}"
+                      class="btn"
+                      style="
+                        background-color: transparent;
+                        border: 2px solid #002ba3;
+                        border-radius: 0px;
+                        padding: 12px 30px 14px;
+                        font-size: 1rem;
+                        color: #002ba3;
+                        text-decoration: none;
+                        display: inline-block;
+                        width: 320px;
+                      "
+                    >
+                      Kembali
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "footer.html" %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="{% static 'plugins.js' %}" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      defer
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Inisialisasi variabel global
+      let allMotifImages = [];
+      let urutanAsalArray = [];
+      let urutanGabunganArray = [];
+      let isSelectingMiddleMotif = false;
+      let windowSavedMotifId = null;
+
+      // Fungsi untuk menyembunyikan loader
+      window.addEventListener("load", function () {
+        document.body.classList.add("loaded");
+        const loader = document.getElementById("loader-wrapper");
+        if (loader) loader.style.display = "none";
+      });
+
+      // Fallback untuk loader
+      setTimeout(() => {
+        const loader = document.getElementById("loader-wrapper");
+        if (loader && loader.style.display !== "none") {
+          loader.style.display = "none";
+          console.warn("Loader timed out after 10 seconds.");
+        }
+      }, 10000);
+
+      // Cache elemen DOM
+      const combinedMotifContainer = document.getElementById("newCombinedMotifContainer");
+      const jenisKainSelect = document.getElementById("jenis_kain");
+      const jenisProdukSelect = document.getElementById("jenis_produk");
+      const sizeInfoSarung = document.getElementById("size-info-sarung");
+      const sizeInfoSelendang = document.getElementById("size-info-selendang");
+      const aturanSadum = document.getElementById("aturan-sadum");
+      const aturanPuca = document.getElementById("aturan-puca");
+
+      // Fungsi untuk menampilkan/menyembunyikan aturan kain
+      function updateAturanKain() {
+        const selectedValue = jenisKainSelect.value;
+        aturanSadum.style.display = selectedValue === "sadum" ? "block" : "none";
+        aturanPuca.style.display = selectedValue === "puca" ? "block" : "none";
+      }
+
+      // Fungsi untuk menampilkan/menyembunyikan ukuran berdasarkan pilihan
+      function updateSizeInfo() {
+        const selectedValue = jenisProdukSelect.value;
+        sizeInfoSarung.style.display = selectedValue === "sarung" ? "block" : "none";
+        sizeInfoSelendang.style.display = selectedValue === "selendang" ? "block" : "none";
+      }
+
+      // Fungsi untuk mengatur ukuran container berdasarkan pilihan
+      function adjustCombinedMotifContainer() {
+        if (jenisProdukSelect && combinedMotifContainer) {
+          const selectedValue = jenisProdukSelect.value;
+          if (selectedValue === "sarung") {
+            combinedMotifContainer.style.maxWidth = "500px";
+            combinedMotifContainer.style.maxHeight = "800px";
+          } else if (selectedValue === "selendang") {
+            combinedMotifContainer.style.maxWidth = "300px";
+            combinedMotifContainer.style.maxHeight = "600px";
+          }
+          combinedMotifContainer.style.width = "100%";
+          combinedMotifContainer.style.height = "auto";
+        }
+      }
+
+      // Fungsi untuk redirect ke halaman list
+      function redirectToList() {
+        if (windowSavedMotifId) {
+          window.location.href = `/list/${windowSavedMotifId}`;
+        } else {
+          console.error("Motif ID tidak tersedia.");
+          window.location.href = "{% url 'list1' %}";
+        }
+      }
+
+      // Fungsi untuk update nomor motif
+      function updateMotifNumbers() {
+        const labels = combinedMotifContainer.querySelectorAll(".motif-number");
+        const jenisKain = jenisKainSelect.value;
+        let labelCounter = 1;
+
+        if (jenisKain === "puca") {
+          const middleIndex = Math.floor(labels.length / 2);
+          for (let i = 0; i < labels.length; i++) {
+            if (i === middleIndex) {
+              // Motif tengah mendapatkan nomor tunggal
+              labels[i].textContent = labelCounter++;
+            } else if (i < middleIndex) {
+              // Motif atas (top) mendapatkan nomor
+              labels[i].textContent = labelCounter;
+            } else {
+              // Motif bawah (cerminan) menggunakan nomor yang sama dengan pasangannya
+              const mirrorIndex = labels.length - 1 - i;
+              if (mirrorIndex >= 0 && mirrorIndex < middleIndex) {
+                labels[i].textContent = labels[mirrorIndex].textContent;
+              } else {
+                labels[i].textContent = labelCounter;
+              }
+            }
+            // Increment counter hanya untuk motif atas dan tengah
+            if (i < middleIndex) labelCounter++;
+          }
+        } else if (jenisKain === "sadum") {
+          const totalMotifs = Math.ceil(labels.length / 2);
+          for (let i = 0; i < labels.length; i++) {
+            if (i < totalMotifs) {
+              // Motif atas (top) mendapatkan nomor
+              labels[i].textContent = labelCounter;
+            } else {
+              // Motif bawah (cerminan) menggunakan nomor yang sama dengan pasangannya
+              const mirrorIndex = labels.length - 1 - i;
+              if (mirrorIndex >= 0) {
+                labels[i].textContent = labels[mirrorIndex].textContent;
+              }
+            }
+            // Increment counter hanya untuk motif atas
+            if (i < totalMotifs - 1) labelCounter++;
+          }
+        }
+      }
+
+      // Fungsi utama untuk render motif
+      function renderMotifs() {
+        requestAnimationFrame(() => {
+          combinedMotifContainer.innerHTML = "";
+          adjustCombinedMotifContainer();
+          if (allMotifImages.length === 0) {
+            const notif = document.createElement("p");
+            notif.className = "text-muted";
+            notif.textContent = "Belum ada motif yang dipilih.";
+            combinedMotifContainer.appendChild(notif);
+            return;
+          }
+          const jenisKain = jenisKainSelect.value;
+          const motifContainer = document.createElement("div");
+          if (jenisKain === "puca") {
+            motifContainer.className = "puca-row new-combined-motif-container puca";
+          } else if (jenisKain === "sadum") {
+            motifContainer.className = "sadum-row new-combined-motif-container sadum";
+          }
+          motifContainer.style.display = "flex";
+          motifContainer.style.flexDirection = "column";
+          motifContainer.style.alignItems = "center";
+
+          // Fungsi untuk membuat elemen gambar motif
+          function createMotifImage(src, index, isMirror = false, position = "body", isAsal = false) {
+            const wrapper = document.createElement("div");
+            if (jenisKain === "puca") {
+              wrapper.className = "puca-motif-wrapper";
+              if (position === "middle") {
+                wrapper.setAttribute("data-position", "middle");
+              }
+            } else if (jenisKain === "sadum") {
+              wrapper.className = "sadum-motif-wrapper";
+            }
+            wrapper.style.marginBottom = "20px";
+            wrapper.style.textAlign = "center";
+            wrapper.style.position = "relative";
+            wrapper.style.width = "100%";
+            wrapper.dataset.position = position;
+            const label = document.createElement("span");
+            label.className = "motif-number";
+            label.style.position = "absolute";
+            label.style.top = "5px";
+            label.style.left = "5px";
+            label.style.backgroundColor = "blue";
+            label.style.color = "white";
+            label.style.padding = "2px 6px";
+            label.style.fontWeight = "bold";
+            label.style.fontSize = "12px";
+            label.style.zIndex = "1";
+            label.textContent = index + 1;
+            const imgContainer = document.createElement("div");
+            imgContainer.style.position = "relative";
+            imgContainer.style.width = "100%";
+            imgContainer.style.height = "auto";
+            if (src === "motif kosong") {
+              const placeholder = document.createElement("div");
+              placeholder.className = "middle-motif-placeholder";
+              placeholder.textContent = "Pilih Motif Joker";
+              imgContainer.appendChild(placeholder);
+            } else {
+              const img = document.createElement("img");
+              if (jenisKain === "puca") img.className = "puca-motif";
+              else if (jenisKain === "sadum") img.className = "sadum-motif";
+              img.src = src;
+              img.style.width = "100%";
+              img.style.height = "auto";
+              img.style.objectFit = "contain";
+              if (isMirror) img.style.transform = "scaleY(-1)";
+              img.dataset.index = index;
+              img.dataset.position = position;
+              img.setAttribute("data-urutanasal", JSON.stringify(urutanAsalArray[index] || []));
+              img.setAttribute("data-mirror", isMirror ? "true" : "false");
+              if (isAsal) img.setAttribute("data-jenis", "asal");
+              imgContainer.appendChild(img);
+            }
+            wrapper.onclick = function() {
+              if (position === "middle" && jenisKain === "puca") {
+                isSelectingMiddleMotif = true;
+                combinedMotifContainer.classList.add("selecting-middle");
+              } else if (src !== "motif kosong") {
+                removeMotif(index);
+              }
+            };
+            wrapper.appendChild(imgContainer);
+            wrapper.appendChild(label);
+            return wrapper;
+          }
+
+          // Render untuk jenis kain Puca
+          if (jenisKain === "puca") {
+            if (allMotifImages.length % 2 === 0) {
+              const middleIndex = Math.floor(allMotifImages.length / 2);
+              allMotifImages.splice(middleIndex, 0, "motif kosong");
+              urutanAsalArray.splice(middleIndex, 0, []);
+            }
+            const middleIndex = Math.floor(allMotifImages.length / 2);
+            for (let i = 0; i < middleIndex; i++) {
+              if (allMotifImages[i] !== "motif kosong") {
+                const isAsal = allMotifImages[i] === document.querySelector('img[data-jenis="asal"]').src;
+                motifContainer.appendChild(createMotifImage(allMotifImages[i], i, false, "top", isAsal));
+              }
+            }
+            const isAsalMiddle = allMotifImages[middleIndex] === document.querySelector('img[data-jenis="asal"]').src;
+            const middleWrapper = createMotifImage(allMotifImages[middleIndex], middleIndex, false, "middle", isAsalMiddle);
+            middleWrapper.style.border = "2px dashed #002ba3";
+            middleWrapper.style.backgroundColor = "#e6f0ff";
+            middleWrapper.style.padding = "10px";
+            motifContainer.appendChild(middleWrapper);
+            for (let i = middleIndex - 1; i >= 0; i--) {
+              if (allMotifImages[i] !== "motif kosong") {
+                const isAsal = allMotifImages[i] === document.querySelector('img[data-jenis="asal"]').src;
+                motifContainer.appendChild(createMotifImage(allMotifImages[i], allMotifImages.length + i, true, "bottom", isAsal));
+              }
+            }
+          } 
+          // Render untuk jenis kain Sadum
+          else if (jenisKain === "sadum") {
+            const totalMotifs = allMotifImages.length;
+            for (let i = 0; i < totalMotifs; i++) {
+              if (allMotifImages[i] !== "motif kosong") {
+                const isAsal = allMotifImages[i] === document.querySelector('img[data-jenis="asal"]').src;
+                motifContainer.appendChild(createMotifImage(allMotifImages[i], i, false, "top", isAsal));
+              }
+            }
+            for (let i = totalMotifs - 1; i >= 0; i--) {
+              if (allMotifImages[i] !== "motif kosong") {
+                const isAsal = allMotifImages[i] === document.querySelector('img[data-jenis="asal"]').src;
+                motifContainer.appendChild(createMotifImage(allMotifImages[i], i + totalMotifs, true, "bottom", isAsal));
+              }
+            }
+          }
+          combinedMotifContainer.appendChild(motifContainer);
+          updateMotifNumbers();
+          tampilkanUrutanGabungan();
+        });
+      }
+
+      // Fungsi untuk memilih motif
+      function selectMotif(imageElement) {
+        const urutanArray = JSON.parse(imageElement.getAttribute("data-urutanasal"));
+        const src = imageElement.src;
+        const isAsal = imageElement.getAttribute("data-jenis") === "asal";
+        adjustCombinedMotifContainer();
+        if (isSelectingMiddleMotif) {
+          const middleIndex = Math.floor(allMotifImages.length / 2);
+          allMotifImages[middleIndex] = src;
+          urutanAsalArray[middleIndex] = urutanArray;
+          isSelectingMiddleMotif = false;
+          combinedMotifContainer.classList.remove("selecting-middle");
+        } else {
+          const jumlahAktif = allMotifImages.filter((item) => item !== "motif kosong").length;
+          const maxMotifs = 11;
+          if (jumlahAktif >= maxMotifs) {
+            alert(`Motif yang ditambahkan maksimal ${maxMotifs}!`);
+            return;
+          }
+          if (jenisKainSelect.value === "puca" && allMotifImages.length % 2 === 0) {
+            const middleIndex = Math.floor(allMotifImages.length / 2);
+            allMotifImages.splice(middleIndex, 0, "motif kosong");
+            urutanAsalArray.splice(middleIndex, 0, []);
+          }
+          const kosongIndex = allMotifImages.findIndex(
+            (item, idx) => item === "motif kosong" && 
+            (jenisKainSelect.value !== "puca" || idx !== Math.floor(allMotifImages.length / 2))
+          );
+          if (kosongIndex !== -1) {
+            allMotifImages[kosongIndex] = src;
+            urutanAsalArray[kosongIndex] = urutanArray;
+          } else {
+            allMotifImages.push(src);
+            urutanAsalArray.push(urutanArray);
+          }
+        }
+        tampilkanUrutanGabungan();
+        renderMotifs();
+      }
+
+      // Fungsi untuk menghapus motif
+      function removeMotif(indexToRemove) {
+        if (indexToRemove >= 0 && indexToRemove < allMotifImages.length && indexToRemove < urutanAsalArray.length) {
+          allMotifImages[indexToRemove] = "motif kosong";
+          urutanAsalArray[indexToRemove] = [];
+          const middleIndex = Math.floor(allMotifImages.length / 2);
+          if (jenisKainSelect.value === "puca" && allMotifImages[middleIndex] !== "motif kosong") {
+            allMotifImages[middleIndex] = "motif kosong";
+            urutanAsalArray[middleIndex] = [];
+          }
+          renderMotifs();
+          tampilkanUrutanGabungan();
+        }
+      }
+
+      // Fungsi untuk menampilkan urutan gabungan
+      function tampilkanUrutanGabungan() {
+        const jenisKain = jenisKainSelect.value;
+        const jenisProduk = jenisProdukSelect.value;
+        let normal = [];
+        let mirror = [];
+        if (jenisKain === "puca") {
+          if (jenisProduk === "sarung" || jenisProduk === "selendang") {
+            const halfCount = Math.floor(urutanAsalArray.length / 2);
+            normal = urutanAsalArray
+              .slice(0, halfCount)
+              .flat()
+              .concat(urutanAsalArray[halfCount].flat())
+              .concat(urutanAsalArray.slice(halfCount + 1).flat());
+            mirror = urutanAsalArray
+              .slice(0, halfCount)
+              .reverse()
+              .map((arr) => [...arr].reverse())
+              .flat();
+          }
+        } else if (jenisKain === "sadum") {
+          if (jenisProduk === "sarung" || jenisProduk === "selendang") {
+            const totalMotifs = urutanAsalArray.length;
+            normal = urutanAsalArray.flat();
+            mirror = urutanAsalArray
+              .slice()
+              .reverse()
+              .map((arr) => [...arr].reverse())
+              .flat();
+          }
+        }
+        const gabungan = normal.concat(mirror);
+        urutanGabunganArray = gabungan;
+        console.log("Gabungan urutan:", gabungan);
+        const el = document.getElementById("urutanGabungan");
+        if (el) el.textContent = `Gabungan urutan: [${gabungan.join(", ")}]`;
+      }
+
+      // Fungsi untuk menyimpan motif
+      function saveMotif() {
+        const combinedMotifContainer = document.getElementById("newCombinedMotifContainer");
+        if (
+          combinedMotifContainer.children.length === 0 ||
+          combinedMotifContainer.innerHTML.includes("Belum ada motif yang dipilih")
+        ) {
+          const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+          const errorModalMessage = document.getElementById("errorModalMessage");
+          if (errorModalMessage) {
+            errorModalMessage.textContent = "Pilih motif terlebih dahulu!";
+            errorModal.show();
+          } else {
+            console.error("Error: Element with ID 'errorModalMessage' not found.");
+          }
+          return;
+        }
+        function loadImage(src) {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+            img.src = src;
+          });
+        }
+        function getCookie(name) {
+          let cookieValue = null;
+          if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              if (cookie.substring(0, name.length + 1) === name + "=") {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+        
+        async function combineMotifs() {
+    try {
+        const motifImages = Array.from(combinedMotifContainer.querySelectorAll("img"));
+        if (motifImages.length === 0) {
+            alert("Tidak ada gambar ditemukan.");
+            return;
+        }
+        const canvasWidth = Math.min(parseInt(combinedMotifContainer.style.maxWidth) || 500, 500); // Lebar tetap
+        let totalHeight = 0;
+        const loadedImages = [];
+        for (let img of motifImages) {
+            const loaded = await loadImage(img.src);
+            const scale = canvasWidth / loaded.width; // Skala berdasarkan lebar
+            const scaledHeight = loaded.height * scale;
+            loadedImages.push({ image: loaded, height: scaledHeight });
+            totalHeight += scaledHeight; // Akumulasi tinggi tanpa batasan
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = canvasWidth;
+        canvas.height = totalHeight; // Gunakan tinggi total tanpa batasan
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        let yOffset = 0;
+        for (let { image, height } of loadedImages) {
+            const scale = canvasWidth / image.width;
+            ctx.drawImage(image, 0, yOffset, canvasWidth, height);
+            yOffset += height;
+        }
+        const dataURL = canvas.toDataURL("image/png");
+        const blob = await (await fetch(dataURL)).blob();
+        const imgAsal = document.querySelector('img[data-jenis="asal"]');
+        const imgBeforeSrc = imgAsal ? imgAsal.src : "";
+        const formDataUpload = new FormData();
+        formDataUpload.append("file", blob, "motif_gabung.png");
+        formDataUpload.append("imgBefore", imgBeforeSrc);
+        formDataUpload.append("imgAfter", "/media/uploads/riskia.png");
+        formDataUpload.append("urutanLidi", urutanGabunganArray.join(","));
+        formDataUpload.append("jenisGenerate", "otomatis");
+        formDataUpload.append("user", "riskia");
+        formDataUpload.append("csrfmiddlewaretoken", getCookie("csrftoken"));
+        formDataUpload.append("jmlBaris", urutanGabunganArray.length.toString());
+        formDataUpload.append("jenisKain", document.getElementById("jenis_kain").value);
+        formDataUpload.append("jenisProduk", document.getElementById("jenis_produk").value);
+        const response = await fetch("/generator/PostImageGabungan", {
+            method: "POST",
+            body: formDataUpload,
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken"),
+            },
+        });
+        if (response.ok) {
+            const responseData = await response.json();
+            const motifId = responseData.motif_id;
+            const successModal = new bootstrap.Modal(document.getElementById("successModal"));
+            successModal.show();
+            windowSavedMotifId = motifId;
+        } else {
+            const errorText = await response.text();
+            throw new Error("Gagal menyimpan motif: " + errorText);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Gagal menyimpan motif: " + error.message);
+    }
+}
+        combineMotifs();
+      }
+
+      // Inisialisasi event listeners saat DOM siap
+      document.addEventListener("DOMContentLoaded", function () {
+        if (jenisKainSelect && jenisProdukSelect) {
+          adjustCombinedMotifContainer();
+          updateSizeInfo();
+          updateAturanKain();
+          renderMotifs();
+          jenisKainSelect.addEventListener("change", () => {
+            adjustCombinedMotifContainer();
+            updateAturanKain();
+            renderMotifs();
+          });
+          jenisProdukSelect.addEventListener("change", () => {
+            adjustCombinedMotifContainer();
+            updateSizeInfo();
+            renderMotifs();
+          });
+        }
+      });
+    </script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'956700c3ba17fce2',t:'MTc1MTA0ODg5NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
