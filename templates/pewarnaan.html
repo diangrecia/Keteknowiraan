@@ -20,6 +20,7 @@
         <div class="blue-background-container">
             <div class="blue-background">
                 <h1 class="app-title">Pewarnaan Motif Ulos</h1>
+                {% if status %}
                 <div class="card">
                     <div class="card-body p-4">
                         <form id="coloringForm" method="post" enctype="multipart/form-data">
@@ -141,6 +142,36 @@
                         Unduh Lembar Kerja
                     </a>
                 </div>
+                </div>
+                {% else %}
+                <div class="container d-flex justify-content-center" style="padding-top: 10%; padding-bottom: 10%;">
+                  <div class="card shadow-lg text-center" style="max-width: 550px; border-radius: 20px; border: none; background: linear-gradient(145deg, #ffffff, #f0f0f0);">
+                    <div class="card-body p-5">
+                      <div style="font-size: 60px; color: #f39c12; margin-bottom: 15px; animation: pulse 2s infinite;">
+                        &#x1F512;
+                      </div>
+                      <h3 class="font-weight-bold mb-3" style="color: #2c3e50;">Akun Belum Diverifikasi</h3>
+                      <p class="text-muted mb-4" style="font-size: 16px; line-height: 1.6;">
+                        Saat ini Anda tidak memiliki akses untuk menggunakan fitur <strong>Pewarnaan Motif</strong>. Silakan hubungi Admin kami untuk melakukan proses verifikasi akun.
+                      </p>
+                      <a href="https://wa.me/089505839865?text=Halo%20Admin,%20saya%20tertarik%20untuk%20berlangganan%20agar%20bisa%20mendapatkan%20akses%20penuh%20ke%20fitur%20Pewarnaan%20Motif.%20Boleh%20minta%20info%20detail%20mengenai%20paket%20dan%20cara%20pembayarannya?" target="_blank" class="btn btn-success btn-lg" style="border-radius: 50px; font-weight: 600; padding: 12px 35px; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); display: inline-flex; align-items: center; transition: transform 0.2s ease;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" style="width: 24px; height: 24px; margin-right: 10px; filter: brightness(0) invert(1);"> Hubungi Admin via WhatsApp
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <style>
+                  @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.1); }
+                    100% { transform: scale(1); }
+                  }
+                  .btn-success:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+                  }
+                </style>
+                {% endif %}
             </div>
         </div>
     </div>

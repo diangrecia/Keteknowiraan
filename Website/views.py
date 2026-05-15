@@ -52,7 +52,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from io import BytesIO
 import colorsys
-from .models import UlosCharacteristic, UlosColorThread
+from .models import UlosCharacteristic, UlosColorThread, UserProfile
 from django.core.cache import cache
 import threading
 
@@ -71,9 +71,16 @@ def image(request):
     
     print(f"DEBUG: generator view called")
     user = request.user
-    status = user.is_staff
-    if status == 0 or status == False:
-          status=None
+    status = False
+    if user.is_authenticated:
+        if user.is_staff:
+            status = True
+        else:
+            profile, _ = UserProfile.objects.get_or_create(user=user)
+            if profile.generator_trial_count < 2:
+                status = True
+    if not status:
+        status = None
     navlink = ['nav-link nav-link-1 ','nav-link nav-link-2 active','nav-link nav-link-3','nav-link nav-link-4']
     return render(request, 'home.html',{"status":status,'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
 
@@ -294,6 +301,12 @@ def external(request):
  
     jenisGenerate = ['Tabu Search', 'Greedy Search', 'Random Search', 'ACO']
  
+    user = request.user
+    if user.is_authenticated and not user.is_staff:
+        profile, _ = UserProfile.objects.get_or_create(user=user)
+        profile.generator_trial_count += 1
+        profile.save()
+
     return render(request, 'motif.html', {
         'user'          : username,
         'raw_lidi'      : UrutanLidiRaw,
@@ -2011,10 +2024,22 @@ def motif_gabungan_colored_preview(request, id):
         logger.error(f"Motif with ID {id} not found")
         return render(request, 'error.html', {'error_message': 'Motif tidak ditemukan'})
 
-#@login_required(login_url='login')
+@login_required(login_url='login')
 @csrf_exempt
 def coloring_view(request):
     """Enhanced coloring view with color analysis capabilities"""
+    user = request.user
+    status = False
+    if user.is_authenticated:
+        if user.is_staff:
+            status = True
+        else:
+            profile, _ = UserProfile.objects.get_or_create(user=user)
+            if profile.coloring_trial_count < 2:
+                status = True
+    if not status:
+        status = None
+
     ulos_types = UlosCharacteristic.objects.all()
     ulos_colors_from_db = UlosColorThread.objects.all()
 
@@ -2047,6 +2072,7 @@ def coloring_view(request):
             'selected_colors_codes_str': '',
             'used_colors_display': [],
             'color_analysis_available': COLOR_ANALYSIS_AVAILABLE,
+            'status': status,
         }
         return render(request, '../templates/pewarnaan.html', context)
 
@@ -2071,6 +2097,12 @@ def coloring_view(request):
         task_id = str(uuid.uuid4())
         cache.set(task_id, {'progress': 0, 'status': 'Initializing...'}, timeout=3600)
         
+        user = request.user
+        if user.is_authenticated and not user.is_staff:
+            profile, _ = UserProfile.objects.get_or_create(user=user)
+            profile.coloring_trial_count += 1
+            profile.save()
+            
         thread = threading.Thread(target=main_coloring_process, args=(
             selected_ulos_type,
             selected_colors_codes,

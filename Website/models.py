@@ -89,3 +89,11 @@ class UlosCharacteristic(models.Model):
         verbose_name = "Ulos Characteristic"
         verbose_name_plural = "Ulos Characteristics"
         db_table = 'ulos_characteristic'
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    generator_trial_count = models.IntegerField(default=0)
+    coloring_trial_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
