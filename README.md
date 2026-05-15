@@ -1,10 +1,9 @@
-# Deployment Tugas Akhir
-Repository Tugas Akhir Kelompok TA 13
+# Deployment Tugas Akhir Keteknowiraan
+Repository Tugas Akhir Kelompok TA 09
 
 ### Nama anggota
-1. 11S20014 Lusye Triksi Pasaribu
-2. 11S20019 Hedrin S. Sitorus
-3. 11S20047 Greyssenly Ester Lya Simanjuntak
+1. 11S22045 Lusiana Silaen
+2. 11S22046 Dian Grecia Natalie Gulo
 
 
 ### Instalasi yang diperlukan
