@@ -65,15 +65,14 @@ except ImportError:
 
 
 
-# #@login_required(login_url='login')
+@login_required(login_url='login')
 @csrf_exempt
 def image(request):
     
     print(f"DEBUG: generator view called")
-    # user = request.user
-    # status = user.is_staff
-    status = 1
-    if status == 0:
+    user = request.user
+    status = user.is_staff
+    if status == 0 or status == False:
           status=None
     navlink = ['nav-link nav-link-1 ','nav-link nav-link-2 active','nav-link nav-link-3','nav-link nav-link-4']
     return render(request, 'home.html',{"status":status,'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
